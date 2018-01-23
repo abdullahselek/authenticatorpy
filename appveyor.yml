@@ -17,18 +17,18 @@ install:
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "%PYTHON%\\python.exe -m pip install -r requirements.testing.txt"
 
-# build: off
+build: off
 
 test_script:
-  - echo "Okay"
+  - "%PYTHON%\\python.exe -m pytest -s -vX --cov-report xml --cov=authenticatorpy"
 
-# after_test:
-#   # This step builds your wheels.
-#   # Again, you only need build.cmd if you're building C extensions for
-#   # 64-bit Python 3.3/3.4. And you need to use %PYTHON% to get the correct
-#   # interpreter
-#   - "%PYTHON%\\python.exe setup.py bdist_wheel"
+after_test:
+  # This step builds your wheels.
+  # Again, you only need build.cmd if you're building C extensions for
+  # 64-bit Python 3.3/3.4. And you need to use %PYTHON% to get the correct
+  # interpreter
+  - "%PYTHON%\\python.exe setup.py bdist_wheel"
 
-# artifacts:
-#   # bdist_wheel puts your built wheel in the dist directory
-#   - path: dist\*
+artifacts:
+  # bdist_wheel puts your built wheel in the dist directory
+  - path: dist\*
