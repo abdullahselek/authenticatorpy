@@ -2,6 +2,7 @@
 
 import base64
 import time
+import hashlib
 
 class Authenticator(object):
 
@@ -25,3 +26,12 @@ class Authenticator(object):
 
     def current_timestamp(self):
         return time.time()
+
+    def create_hmac(self, secret, input):
+        input_str = repr(input).encode('ascii')
+        input_hash = hashlib.sha1(secret + input_str).hexdigest().encode('ascii')
+        return hashlib.sha1(secret + input_hash).hexdigest()
+
+    def get_last_x_bytes(self, byte_array, x):
+        return byte_array[-x:]
+
