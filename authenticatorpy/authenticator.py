@@ -20,8 +20,8 @@ class Authenticator(object):
         byte_array.extend(map(ord, str))
         return byte_array
 
-    def encode_with_base32(self, upper_case_secret):
-        return base64.b32encode(self.byte_array(upper_case_secret))
+    def decode_with_base32(self, upper_case_secret):
+        return base64.b32decode(upper_case_secret)
 
     def current_timestamp(self):
         return time.time()

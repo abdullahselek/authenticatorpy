@@ -21,9 +21,9 @@ class AuthenticatorTest(unittest.TestCase):
         upper_case_str = self._authenticator.to_upper_case('aBcD')
         self.assertEqual(upper_case_str, 'ABCD')
 
-    def test_encode_with_base32(self):
-        decoded_str = self._authenticator.encode_with_base32('ABCD1234ABCD1234ABCD1234ABCD1234')
-        self.assertEqual(decoded_str, b'IFBEGRBRGIZTIQKCINCDCMRTGRAUEQ2EGEZDGNCBIJBUIMJSGM2A====')
+    def test_decode_with_base32(self):
+        decoded_str = self._authenticator.decode_with_base32('ABCDXYZWABCDXYZWABCDXYZWABCDXYZW')
+        self.assertEqual(decoded_str, b'\x00D;\xe36\x00D;\xe36\x00D;\xe36\x00D;\xe36')
 
     def test_current_timestamp(self):
         self.assertIsNotNone(self._authenticator.current_timestamp())
