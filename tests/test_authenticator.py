@@ -6,14 +6,14 @@ from authenticatorpy.authenticator import Authenticator
 class AuthenticatorTest(unittest.TestCase):
 
     def setUp(self):
-        self._authenticator = Authenticator('abcd 1234 abcd 1234 abcd 1234 abcd 1234')
+        self._authenticator = Authenticator('abcd xyzw abcd xyzw abcd xyzw abcd xyzw')
 
     def test_initiation(self):
         self.assertIsInstance(self._authenticator, Authenticator)
     
     def test_remove_spaces(self):
-        string_without_spaces = self._authenticator.remove_spaces('abcd 1234 abcd 1234 abcd 1234 abcd 1234')
-        self.assertEqual(string_without_spaces, 'abcd1234abcd1234abcd1234abcd1234')
+        string_without_spaces = self._authenticator.remove_spaces('abcd xyzw abcd xyzw abcd xyzw abcd xyzw')
+        self.assertEqual(string_without_spaces, 'abcdxyzwabcdxyzwabcdxyzwabcdxyzw')
     
     def test_to_upper_case(self):
         upper_case_str = self._authenticator.to_upper_case('abcd')
