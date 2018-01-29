@@ -39,3 +39,6 @@ class AuthenticatorTest(unittest.TestCase):
         last_four_element = self._authenticator.get_last_x_bytes(byte_array, 4)
         self.assertEqual(len(last_four_element), 4)
 
+    def test_one_time_password(self):
+        password = self._authenticator.one_time_password()
+        self.assertIsNotNone(password)

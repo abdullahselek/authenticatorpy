@@ -3,6 +3,7 @@
 import base64
 import time
 import hashlib
+import codecs
 
 class Authenticator(object):
 
@@ -35,3 +36,14 @@ class Authenticator(object):
     def get_last_x_bytes(self, byte_array, x):
         return byte_array[-x:]
 
+    def one_time_password(self):
+        secret_without_spaces = self.remove_spaces(self._secret)
+        upper_case_secret = self.to_upper_case(secret_without_spaces)
+        secret = self.decode_with_base32(upper_case_secret)
+        input = self.current_timestamp() / 30
+        hmac = self.create_hmac(secret, input)
+        item = ord(hmac[len(hmac)-1])
+        offset = (item & 0x0F) >> 4
+        hex_four_characters = codecs.encode(hmac[offset : offset+4].encode(), 'hex')
+        password = int(hex_four_characters, 16) % 1000000
+        return password
