@@ -3,7 +3,7 @@
 import base64
 import time
 import hashlib
-import codecs
+import binascii
 
 class Authenticator(object):
 
@@ -44,6 +44,6 @@ class Authenticator(object):
         hmac = self.create_hmac(secret, input)
         item = ord(hmac[len(hmac)-1])
         offset = (item & 0x0F) >> 4
-        hex_four_characters = codecs.encode(hmac[offset : offset+4].encode(), 'hex')
+        hex_four_characters = binascii.hexlify(hmac[offset : offset+4].encode())
         password = int(hex_four_characters, 16) % 1000000
         return password
