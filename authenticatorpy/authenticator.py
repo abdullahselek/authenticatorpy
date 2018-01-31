@@ -42,8 +42,7 @@ class Authenticator(object):
         secret = self.decode_with_base32(upper_case_secret)
         input = self.current_timestamp() / 30
         hmac = self.create_hmac(secret, input)
-        item = ord(hmac[len(hmac)-1])
-        offset = (item & 0x0F) >> 4
+        offset = ord(hmac[len(hmac)-1]) & 0x0F
         hex_four_characters = binascii.hexlify(hmac[offset : offset+4].encode())
-        password = int(hex_four_characters, 16) % 1000000
+        password = int(hex_four_characters, 32) % 1000000
         return password
