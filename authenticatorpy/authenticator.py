@@ -33,9 +33,6 @@ class Authenticator(object):
         input_hash = hashlib.sha1(secret + input_str).hexdigest().encode('ascii')
         return hashlib.sha1(secret + input_hash).hexdigest()
 
-    def get_last_x_bytes(self, byte_array, x):
-        return byte_array[-x:]
-
     def one_time_password(self):
         secret_without_spaces = self.remove_spaces(self._secret)
         upper_case_secret = self.to_upper_case(secret_without_spaces)

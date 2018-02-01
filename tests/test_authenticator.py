@@ -34,11 +34,6 @@ class AuthenticatorTest(unittest.TestCase):
         hmac = self._authenticator.create_hmac(decoded_str, input)
         self.assertIsNotNone(hmac)
 
-    def test_get_last_x_bytes(self):
-        byte_array = self._authenticator.byte_array('https://www.google.com')
-        last_four_element = self._authenticator.get_last_x_bytes(byte_array, 4)
-        self.assertEqual(len(last_four_element), 4)
-
     def test_one_time_password(self):
         password = self._authenticator.one_time_password()
         self.assertIsNotNone(password)
