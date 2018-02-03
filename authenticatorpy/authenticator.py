@@ -17,11 +17,6 @@ class Authenticator(object):
     def to_upper_case(self, secret_without_spaces):
         return secret_without_spaces.upper()
 
-    def byte_array(self, str):
-        byte_array = bytearray()
-        byte_array.extend(map(ord, str))
-        return byte_array
-
     def decode_with_base32(self, upper_case_secret):
         return base64.b32decode(upper_case_secret)
 
