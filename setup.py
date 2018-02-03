@@ -37,10 +37,9 @@ setup(
     download_url=extract_metaitem('download_url'),
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['Any'],
-    install_requires=['future'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
-    keywords='authenticator, unique key generator',
+    keywords='authenticator, unique key generator, 2FA tokens',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
