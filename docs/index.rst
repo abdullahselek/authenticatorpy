@@ -1,16 +1,21 @@
 .. authenticatorpy documentation master file, created by
-   sphinx-quickstart on Sat Feb  3 13:29:47 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
+Contents:
+ 
 Welcome to authenticatorpy's documentation!
-===========================================
+==================================
+**A pure Python library which provides one time password like Google Authenticator. It works with Python versions from 2.7+ and Python 3.**
+
+Author: Abdullah Selek
+
+
+Contents:
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
 
-
+   installation.rst
+   authenticatorpy.rst
 
 Indices and tables
 ==================
