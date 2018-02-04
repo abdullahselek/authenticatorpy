@@ -68,6 +68,12 @@ Initiation::
 
 And that's it, you have the unique password.
 
+Relevant RFCs
+-------------
+
+`RFC4226 <http://tools.ietf.org/html/rfc4226>`_
+`RFC6238 <http://tools.ietf.org/html/rfc6238>`_
+
 License
 -------
 
