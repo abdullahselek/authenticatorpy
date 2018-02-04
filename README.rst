@@ -1,6 +1,15 @@
 authenticatorpy
 ===============
 
+.. image:: https://img.shields.io/pypi/v/authenticatorpy.svg
+    :target: https://pypi.python.org/pypi/authenticatorpy/
+
+.. image:: https://img.shields.io/pypi/pyversions/authenticatorpy.svg
+    :target: https://pypi.org/project/authenticatorpy
+
+.. image:: https://readthedocs.org/projects/authenticatorpy/badge/?version=latest
+    :target: http://authenticatorpy.readthedocs.org/en/latest/?badge=latest
+
 .. image:: https://codecov.io/gh/abdullahselek/authenticatorpy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/authenticatorpy
 
