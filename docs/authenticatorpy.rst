@@ -1,6 +1,4 @@
 Library Documentation
 =====================
 
-.. automodule:: authenticatorpy.authenticator
-    :members:
-    :undoc-members:
+.. method:: authenticatorpy.authenticator.one_time_password
