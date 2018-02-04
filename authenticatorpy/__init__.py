@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""A Python library that provides a unique keys with given secret."""
+"""A Python library that provide unique keys for 2FA with given secret."""
 
 from __future__ import absolute_import
 
@@ -11,4 +11,4 @@ __license__      = 'MIT License'
 __version__      = '0.1'
 __url__          = 'https://github.com/abdullahselek/authenticatorpy'
 __download_url__ = 'https://github.com/abdullahselek/authenticatorpy'
-__description__  = 'A Python library that provides a unique keys with given secret.'
+__description__  = 'A Python library that provide unique keys for 2FA with given secret.'
