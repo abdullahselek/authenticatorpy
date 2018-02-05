@@ -10,15 +10,20 @@ class Authenticator(object):
     time use password.
     """
 
-    def __init__(self, secret=None):
+    def __init__(self, secret):
         """Returns a Authenticator instance.
         Args:
           secret (str):
             User secret which is used in generating one
             time password.
         """
-
         self._secret = secret
+        self.__check_secret(secret)
+
+    def __check_secret(self, secret):
+        assert(secret is None, 'You must set a secret parameter')
+        assert(isinstance(secret, str) == False, 'You must a str variable as secret')
+        assert(len(secret) / 8 != 0, 'Secret must be length of 8')
 
     def remove_spaces(self, secret):
         """Returns a new string including no space.
