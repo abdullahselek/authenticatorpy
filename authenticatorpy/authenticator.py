@@ -23,6 +23,10 @@ class Authenticator(object):
     def __check_secret(self, secret):
         assert(secret is None, 'You must set a secret parameter')
         assert(isinstance(secret, str) == False, 'You must a str variable as secret')
+        try:
+            str(secret, 'ascii')
+        except Exception:
+            assert('You must not set a unicode secret')
         assert(len(secret) / 8 != 0, 'Secret must be length of 8')
 
     def remove_spaces(self, secret):
