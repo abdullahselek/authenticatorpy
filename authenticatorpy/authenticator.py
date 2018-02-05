@@ -4,6 +4,7 @@ import base64
 import time
 import hashlib
 import binascii
+import re
 
 class Authenticator(object):
     """Authenticator class which generates unique one
@@ -38,6 +39,7 @@ class Authenticator(object):
         """
 
         secret_without_spaces = secret.replace(' ', '')
+        secret_without_spaces = re.sub(r'\W', '', secret_without_spaces)
         return secret_without_spaces
 
     def to_upper_case(self, secret_without_spaces):

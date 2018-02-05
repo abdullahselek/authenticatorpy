@@ -14,6 +14,8 @@ class AuthenticatorTest(unittest.TestCase):
     def test_remove_spaces(self):
         string_without_spaces = self._authenticator.remove_spaces('abcd xyzw abcd xyzw abcd xyzw abcd xyzw')
         self.assertEqual(string_without_spaces, 'abcdxyzwabcdxyzwabcdxyzwabcdxyzw')
+        string_without_spaces = self._authenticator.remove_spaces('abcd \tyzw \nbcd \tyzw')
+        self.assertEqual(string_without_spaces, 'abcdyzwbcdyzw')
     
     def test_to_upper_case(self):
         upper_case_str = self._authenticator.to_upper_case('abcd')
