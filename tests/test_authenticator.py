@@ -12,17 +12,41 @@ class AuthenticatorTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._authenticator, Authenticator)
 
-    def test_wrong_initiation_with_int(self):
+    def test_wrong_initiation(self):
         with self.assertRaises(Exception) as context:
             Authenticator(123456)
 
         self.assertTrue('You must set a str variable as secret!' in str(context.exception))
-    
-    def test_wrong_initiation_with_not_length_of_eight(self):
+
         with self.assertRaises(Exception) as context:
             Authenticator('abcd')
 
         self.assertTrue('You must set a string length of 8!' in str(context.exception))
+
+        with self.assertRaises(Exception) as context:
+            Authenticator(lambda: None)
+
+        self.assertTrue('You must set a str variable as secret!' in str(context.exception))
+
+        with self.assertRaises(Exception) as context:
+            Authenticator(123456.789)
+
+        self.assertTrue('You must set a str variable as secret!' in str(context.exception))
+
+        with self.assertRaises(Exception) as context:
+            Authenticator([])
+
+        self.assertTrue('You must set a str variable as secret!' in str(context.exception))
+
+        with self.assertRaises(Exception) as context:
+            Authenticator(set())
+
+        self.assertTrue('You must set a str variable as secret!' in str(context.exception))
+
+        with self.assertRaises(Exception) as context:
+            Authenticator(tuple())
+
+        self.assertTrue('You must set a str variable as secret!' in str(context.exception))
 
     def test_remove_spaces(self):
         string_without_spaces = self._authenticator.remove_spaces('abcd xyzw abcd xyzw abcd xyzw abcd xyzw')
