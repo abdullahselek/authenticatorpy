@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import unittest
 from authenticatorpy.authenticator import Authenticator
@@ -10,6 +11,12 @@ class AuthenticatorTest(unittest.TestCase):
 
     def test_initiation(self):
         self.assertIsInstance(self._authenticator, Authenticator)
+
+    def test_wrong_initiation_with_int(self):
+        with self.assertRaises(Exception) as context:
+            Authenticator(123456)
+
+        self.assertTrue('You must set a str variable as secret!' in str(context.exception))
     
     def test_remove_spaces(self):
         string_without_spaces = self._authenticator.remove_spaces('abcd xyzw abcd xyzw abcd xyzw abcd xyzw')
@@ -18,10 +25,10 @@ class AuthenticatorTest(unittest.TestCase):
         self.assertEqual(string_without_spaces, 'abcdyzwbcdyzw')
     
     def test_to_upper_case(self):
-        upper_case_str = self._authenticator.to_upper_case('abcd')
-        self.assertEqual(upper_case_str, 'ABCD')
-        upper_case_str = self._authenticator.to_upper_case('aBcD')
-        self.assertEqual(upper_case_str, 'ABCD')
+        upper_case_str = self._authenticator.to_upper_case('abcdefgh')
+        self.assertEqual(upper_case_str, 'ABCDEFGH')
+        upper_case_str = self._authenticator.to_upper_case('aBcDeFgH')
+        self.assertEqual(upper_case_str, 'ABCDEFGH')
 
     def test_decode_with_base32(self):
         decoded_str = self._authenticator.decode_with_base32('ABCDXYZWABCDXYZWABCDXYZWABCDXYZW')

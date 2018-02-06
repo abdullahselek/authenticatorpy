@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import base64
 import time
 import hashlib
@@ -22,13 +23,19 @@ class Authenticator(object):
         self.__check_secret(secret)
 
     def __check_secret(self, secret):
-        assert(secret is None, 'You must set a secret parameter')
-        assert(isinstance(secret, str) == False, 'You must a str variable as secret')
-        try:
-            str(secret, 'ascii')
-        except Exception:
-            assert('You must not set a unicode secret')
-        assert(len(secret) / 8 != 0, 'Secret must be length of 8')
+        if isinstance(secret, str) == False:
+            raise TypeError('You must set a str variable as secret!')
+        if sys.version_info >= (3,0,0):
+            # for Python 3
+            if isinstance(secret, bytes):
+                try:
+                    secret.decode('ascii')
+                except Exception:
+                    raise TypeError('You must set a str variable as secret! Yours is unicode')
+        else:
+            # for Python 2
+            if isinstance(secret, unicode):
+                raise TypeError('You must set a str variable as secret! Yours is unicode')
 
     def remove_spaces(self, secret):
         """Returns a new string including no space.
@@ -49,7 +56,8 @@ class Authenticator(object):
             User secret which is used in generating one
             time password.
         """
-
+        if len(secret_without_spaces) % 8 != 0:
+            raise ValueError('You must set a string length of 8!')
         return secret_without_spaces.upper()
 
     def decode_with_base32(self, upper_case_secret):
