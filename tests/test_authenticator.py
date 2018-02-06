@@ -52,3 +52,9 @@ class AuthenticatorTest(unittest.TestCase):
     def test_one_time_password(self):
         password = self._authenticator.one_time_password()
         self.assertIsNotNone(password)
+
+    def test_one_time_password_with_empty_spaces(self):
+        password = Authenticator('\t\t\t\t \t\t\t\t').one_time_password()
+        self.assertIsNotNone(password)
+        password = Authenticator('\r\r\r\r \r\r\r\r').one_time_password()
+        self.assertIsNotNone(password)
