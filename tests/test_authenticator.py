@@ -18,6 +18,12 @@ class AuthenticatorTest(unittest.TestCase):
 
         self.assertTrue('You must set a str variable as secret!' in str(context.exception))
     
+    def test_wrong_initiation_with_not_length_of_eight(self):
+        with self.assertRaises(Exception) as context:
+            Authenticator('abcd')
+
+        self.assertTrue('You must set a string length of 8!' in str(context.exception))
+
     def test_remove_spaces(self):
         string_without_spaces = self._authenticator.remove_spaces('abcd xyzw abcd xyzw abcd xyzw abcd xyzw')
         self.assertEqual(string_without_spaces, 'abcdxyzwabcdxyzwabcdxyzwabcdxyzw')

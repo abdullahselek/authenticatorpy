@@ -19,23 +19,17 @@ class Authenticator(object):
             User secret which is used in generating one
             time password.
         """
+
         self._secret = secret
         self.__check_secret(secret)
 
     def __check_secret(self, secret):
         if isinstance(secret, str) == False:
             raise TypeError('You must set a str variable as secret!')
-        if sys.version_info >= (3,0,0):
-            # for Python 3
-            if isinstance(secret, bytes):
-                try:
-                    secret.decode('ascii')
-                except Exception:
-                    raise TypeError('You must set a str variable as secret! Yours is unicode')
-        else:
-            # for Python 2
-            if isinstance(secret, unicode):
-                raise TypeError('You must set a str variable as secret! Yours is unicode')
+        secret_without_spaces = self.remove_spaces(secret)
+        self._secret = self.to_upper_case(secret_without_spaces)
+        if len(self._secret) % 8 != 0:
+            raise ValueError('You must set a string length of 8!')
 
     def remove_spaces(self, secret):
         """Returns a new string including no space.
@@ -56,8 +50,7 @@ class Authenticator(object):
             User secret which is used in generating one
             time password.
         """
-        if len(secret_without_spaces) % 8 != 0:
-            raise ValueError('You must set a string length of 8!')
+
         return secret_without_spaces.upper()
 
     def decode_with_base32(self, upper_case_secret):
