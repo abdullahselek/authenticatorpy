@@ -26,6 +26,9 @@ class Authenticator(object):
     def __is_ascii(self, secret):
         return all(ord(c) < 128 for c in secret)
 
+    def __is_alpha(self, secret):
+        return all(c.isalpha() for c in secret)
+
     def __check_secret(self, secret):
         if isinstance(secret, str) == False:
             raise TypeError('You must set a str variable as secret!')
@@ -35,6 +38,8 @@ class Authenticator(object):
         self._secret = self.to_upper_case(secret_without_spaces)
         if len(self._secret) % 8 != 0:
             raise ValueError('You must set a string length of 8!')
+        if self.__is_alpha(self._secret) == False:
+            raise TypeError('All characters in the secret must be alphabetic!')
 
     def remove_spaces(self, secret):
         """Returns a new string including no space.
