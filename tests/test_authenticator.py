@@ -24,6 +24,11 @@ class AuthenticatorTest(unittest.TestCase):
         self.assertTrue('You must set a secret of minimum 8 characters!' in str(context.exception))
 
         with self.assertRaises(Exception) as context:
+            Authenticator('ĀƯŤĤËŊŦĩÇÁƮŏƦ')
+
+        self.assertTrue('You must set an ascii str variable as secret!' in str(context.exception))
+
+        with self.assertRaises(Exception) as context:
             Authenticator(lambda: None)
 
         self.assertTrue('You must set a str variable as secret!' in str(context.exception))
