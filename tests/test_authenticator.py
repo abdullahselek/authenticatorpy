@@ -21,7 +21,7 @@ class AuthenticatorTest(unittest.TestCase):
         with self.assertRaises(Exception) as context:
             Authenticator('abcd')
 
-        self.assertTrue('You must set a string multiple of 8!' in str(context.exception))
+        self.assertTrue('You must set a secret of minimum 8 characters!' in str(context.exception))
 
         with self.assertRaises(Exception) as context:
             Authenticator(lambda: None)
@@ -81,9 +81,12 @@ class AuthenticatorTest(unittest.TestCase):
     def test_one_time_password(self):
         password = self._authenticator.one_time_password()
         self.assertIsNotNone(password)
+        self.assertIsNotNone(Authenticator('abcd xyzw a').one_time_password())
+        self.assertIsNotNone(Authenticator('abcd xyzw ab').one_time_password())
+        self.assertIsNotNone(Authenticator('abcd xyzw abcd').one_time_password())
 
     def test_one_time_password_with_empty_spaces(self):
-        password = Authenticator('\t\t\t\t \t\t\t\t').one_time_password()
+        password = Authenticator('\ta\bt\tc\td \te\tf\tg\th').one_time_password()
         self.assertIsNotNone(password)
-        password = Authenticator('\r\r\r\r \r\r\r\r').one_time_password()
+        password = Authenticator('\ra\rb\rc\rd \re\rf\rg\rh').one_time_password()
         self.assertIsNotNone(password)

@@ -36,8 +36,12 @@ class Authenticator(object):
             raise TypeError('You must set an ascii str variable as secret!')
         secret_without_spaces = self.remove_spaces(secret)
         self._secret = self.to_upper_case(secret_without_spaces)
-        if len(self._secret) % 8 != 0:
-            raise ValueError('You must set a string multiple of 8!')
+        secret_length = len(self._secret)
+        if secret_length < 8:
+            raise ValueError('You must set a secret of minimum 8 characters!')
+        if secret_length > 8:
+            index = secret_length % 8
+            self._secret = self._secret[:-index]
         if self.__is_alpha(self._secret) == False:
             raise TypeError('All characters in the secret must be alphabetic!')
 
