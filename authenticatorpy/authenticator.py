@@ -37,7 +37,7 @@ class Authenticator(object):
         secret_without_spaces = self.remove_spaces(secret)
         self._secret = self.to_upper_case(secret_without_spaces)
         if len(self._secret) % 8 != 0:
-            raise ValueError('You must set a string length of 8!')
+            raise ValueError('You must set a string multiple of 8!')
         if self.__is_alpha(self._secret) == False:
             raise TypeError('All characters in the secret must be alphabetic!')
 

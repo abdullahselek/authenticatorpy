@@ -21,7 +21,7 @@ class AuthenticatorTest(unittest.TestCase):
         with self.assertRaises(Exception) as context:
             Authenticator('abcd')
 
-        self.assertTrue('You must set a string length of 8!' in str(context.exception))
+        self.assertTrue('You must set a string multiple of 8!' in str(context.exception))
 
         with self.assertRaises(Exception) as context:
             Authenticator(lambda: None)
