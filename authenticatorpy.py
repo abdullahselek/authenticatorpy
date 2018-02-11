@@ -2,7 +2,15 @@
 
 import sys
 import argparse
-from authenticatorpy import authenticator
+import sched
+import time
+
+from authenticatorpy.authenticator import Authenticator
+
+def create_one_time_password(scheduler, authenticator):
+    scheduler.enter(30, 0, create_one_time_password, (scheduler, authenticator))
+    print(authenticator.one_time_password())
+
 
 if __name__ == '__main__':
 
@@ -22,3 +30,10 @@ if __name__ == '__main__':
         argcomplete.autocomplete(parser)
     except ImportError:
         pass
+
+    secret = sys.argv[2]
+    authenticator = Authenticator(secret)
+
+    scheduler = sched.scheduler(time.time, time.sleep)
+    scheduler.enter(0, 0, create_one_time_password, (scheduler, authenticator))
+    scheduler.run()
