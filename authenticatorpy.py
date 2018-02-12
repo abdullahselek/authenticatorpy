@@ -7,17 +7,16 @@ import time
 
 from authenticatorpy.authenticator import Authenticator
 
-def create_one_time_password(scheduler, authenticator):
-    scheduler.enter(30, 0, create_one_time_password, (scheduler, authenticator))
-    print(authenticator.one_time_password())
+def create_one_time_password(scheduler, authenticator, sleep_time):
+    scheduler.enter(sleep_time, 0, create_one_time_password, (scheduler, authenticator, sleep_time))
+    print(authenticator.one_time_password(sleep_time))
 
 
 if __name__ == '__main__':
 
-    print('Started each 30 seconds a new token will be created')
-
     parser = argparse.ArgumentParser(description='Authenticator 2FA token generator')
     parser.add_argument('--secret', type=str, help='secret string for user')
+    parser.add_argument('--time', type=int, help='optional delay to generate another new token (default 30 seconds)')
     args = parser.parse_args()
 
     if len(sys.argv) < 2:
@@ -34,6 +33,10 @@ if __name__ == '__main__':
     secret = sys.argv[2]
     authenticator = Authenticator(secret)
 
+    sleep_time = 30
+    if len(sys.argv) > 4:
+        sleep_time = float(sys.argv[4])
+
     scheduler = sched.scheduler(time.time, time.sleep)
-    scheduler.enter(0, 0, create_one_time_password, (scheduler, authenticator))
+    scheduler.enter(0, 0, create_one_time_password, (scheduler, authenticator, sleep_time))
     scheduler.run()
