@@ -97,14 +97,18 @@ class Authenticator(object):
         input_hash = hashlib.sha1(secret + input_str).hexdigest().encode('ascii')
         return hashlib.sha1(secret + input_hash).hexdigest()
 
-    def one_time_password(self):
+    def one_time_password(self, delay_time):
         """Create the one time password using secret
         which must be set in constructor.
+        Args:
+          delay_time (float):
+            Time for token availability.
         """
+
         secret_without_spaces = self.remove_spaces(self._secret)
         upper_case_secret = self.to_upper_case(secret_without_spaces)
         secret = self.decode_with_base32(upper_case_secret)
-        input = self.current_timestamp() / 30
+        input = self.current_timestamp() / delay_time
         hmac = self.create_hmac(secret, input)
         offset = ord(hmac[len(hmac)-1]) & 0x0F
         hex_four_characters = binascii.hexlify(hmac[offset : offset+4].encode())

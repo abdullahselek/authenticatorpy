@@ -84,14 +84,14 @@ class AuthenticatorTest(unittest.TestCase):
         self.assertIsNotNone(hmac)
 
     def test_one_time_password(self):
-        password = self._authenticator.one_time_password()
+        password = self._authenticator.one_time_password(30)
         self.assertIsNotNone(password)
-        self.assertIsNotNone(Authenticator('abcd xyzw a').one_time_password())
-        self.assertIsNotNone(Authenticator('abcd xyzw ab').one_time_password())
-        self.assertIsNotNone(Authenticator('abcd xyzw abcd').one_time_password())
+        self.assertIsNotNone(Authenticator('abcd xyzw a').one_time_password(30))
+        self.assertIsNotNone(Authenticator('abcd xyzw ab').one_time_password(30))
+        self.assertIsNotNone(Authenticator('abcd xyzw abcd').one_time_password(30))
 
     def test_one_time_password_with_empty_spaces(self):
-        password = Authenticator('\ta\bt\tc\td \te\tf\tg\th').one_time_password()
+        password = Authenticator('\ta\bt\tc\td \te\tf\tg\th').one_time_password(30)
         self.assertIsNotNone(password)
-        password = Authenticator('\ra\rb\rc\rd \re\rf\rg\rh').one_time_password()
+        password = Authenticator('\ra\rb\rc\rd \re\rf\rg\rh').one_time_password(30)
         self.assertIsNotNone(password)
