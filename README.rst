@@ -77,6 +77,17 @@ Initiation::
 
 And that's it, you have the unique password.
 
+Command Line Usage
+==================
+
+With ``--secret`` parameter default 30 seconds regeneration interval::
+
+    python authenticatorpy.py --secret 'abcd xyzw abcd xyzw abcd xyzw abcd xyzw'
+
+or additional ``--time`` parameter::
+
+    python authenticatorpy.py --secret 'abcd xyzw abcd xyzw abcd xyzw abcd xyzw' --time 15
+
 Relevant RFCs
 -------------
 
