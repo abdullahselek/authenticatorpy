@@ -10,7 +10,7 @@ __copyright__    = 'Copyright (c) 2018 Abdullah Selek'
 __license__      = 'MIT License'
 __version__      = '0.1.1'
 __url__          = 'https://github.com/abdullahselek/authenticatorpy'
-__download_url__ = 'https://pypi.python.org/pypi/authenticatorpy'
+__download_url__ = 'https://pypi.org/pypi/authenticatorpy'
 __description__  = 'A Python library that provide unique keys for 2FA with given secret.'
 
 from authenticatorpy import authenticator
