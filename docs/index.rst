@@ -15,7 +15,7 @@ Contents:
    :maxdepth: 1
 
    installation.rst
-   authenticatorpy.rst
+   authenticator.rst
 
 Indices and tables
 ==================
