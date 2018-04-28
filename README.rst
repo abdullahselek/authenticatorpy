@@ -86,7 +86,7 @@ With ``--secret`` parameter default 30 seconds regeneration interval::
 
 or additional ``--time`` parameter::
 
-    python authenticatorpy.py --secret 'abcd xyzw abcd xyzw abcd xyzw abcd xyzw' --time 15
+    python authenticator-cli.py --secret 'abcd xyzw abcd xyzw abcd xyzw abcd xyzw' --time 15
 
 Relevant RFCs
 -------------
