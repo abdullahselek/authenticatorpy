@@ -10,9 +10,9 @@ Installation
 
 **From source**
 
-Install dependencies using `pip`::
+Install module using `pip`::
 
-    $ pip install -r requirements.txt
+    $ pip install -e .
 
 Download the latest `authenticatorpy` library from: https://github.com/abdullahselek/authenticatorpy
 
