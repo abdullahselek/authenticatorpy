@@ -82,7 +82,7 @@ Command Line Usage
 
 With ``--secret`` parameter default 30 seconds regeneration interval::
 
-    python authenticatorpy.py --secret 'abcd xyzw abcd xyzw abcd xyzw abcd xyzw'
+    python authenticator-cli.py --secret 'abcd xyzw abcd xyzw abcd xyzw abcd xyzw'
 
 or additional ``--time`` parameter::
 
