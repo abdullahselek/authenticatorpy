@@ -1,6 +1,7 @@
 Library Documentation
 =====================
 
-.. autoclass:: Authenticator
+.. automodule:: authenticatorpy.authenticator
     :members:
     :undoc-members:
+    :show-inheritance:
