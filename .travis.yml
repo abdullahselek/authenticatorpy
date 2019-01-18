@@ -5,14 +5,15 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
+  - "3.7-dev"
   - "nightly"
 
 # command to install dependencies
 install:
-  - pip install -r requirements.testing.txt
+  - pip install -r requirements.testing.txt --upgrade
   - pip install -e .
 
 # command to run tests
 script:
-  - py.test -s -v --cov-report xml --cov=authenticatorpy
+  - py.test -s -v --cov-report xml --cov=authenticatorpy tests/
   - codecov
