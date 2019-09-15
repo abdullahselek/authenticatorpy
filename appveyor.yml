@@ -21,7 +21,7 @@ install:
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe -m pytest -s -v --cov-report xml --cov=authenticatorpy"
+  - "%PYTHON%\\python.exe -m pytest -s -vv --cov-report xml --cov=authenticatorpy"
 
 after_test:
   # This step builds your wheels.
