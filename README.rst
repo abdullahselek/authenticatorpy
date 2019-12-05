@@ -1,6 +1,9 @@
 authenticatorpy
 ===============
 
+.. image:: https://github.com/abdullahselek/authenticatorpy/workflows/authenticatorpy%20ci/badge.svg
+    :target: https://github.com/abdullahselek/authenticatorpy/actions
+
 .. image:: https://img.shields.io/pypi/v/authenticatorpy.svg
     :target: https://pypi.python.org/pypi/authenticatorpy/
 
