@@ -1,0 +1,4 @@
+[paths]
+source = authenticatorpy/
+[run]
+omit = authenticatorpy/__main__.py
