@@ -12,7 +12,7 @@ class Authenticator(object):
     time use password.
     """
 
-    def __init__(self, secret):
+    def __init__(self, secret: str):
         """Returns a Authenticator instance.
         Args:
           secret (str):
@@ -23,13 +23,13 @@ class Authenticator(object):
         self._secret = secret
         self.__check_secret(secret)
 
-    def __is_ascii(self, secret):
+    def __is_ascii(self, secret: str):
         return all(ord(c) < 128 for c in secret)
 
-    def __is_alpha(self, secret):
+    def __is_alpha(self, secret: str):
         return all(c.isalpha() for c in secret)
 
-    def __check_secret(self, secret):
+    def __check_secret(self, secret: str):
         if isinstance(secret, str) == False:
             raise TypeError('You must set a str variable as secret!')
         if self.__is_ascii(secret) == False:
@@ -45,7 +45,7 @@ class Authenticator(object):
         if self.__is_alpha(self._secret) == False:
             raise TypeError('All characters in the secret must be alphabetic!')
 
-    def remove_spaces(self, secret):
+    def remove_spaces(self, secret: str):
         """Returns a new string including no space.
         Args:
           secret (str):
@@ -57,7 +57,7 @@ class Authenticator(object):
         secret_without_spaces = re.sub(r'\W', '', secret_without_spaces)
         return secret_without_spaces
 
-    def to_upper_case(self, secret_without_spaces):
+    def to_upper_case(self, secret_without_spaces: str):
         """Returns a new string in uppercase.
         Args:
           secret_without_spaces (str):
@@ -67,7 +67,7 @@ class Authenticator(object):
 
         return secret_without_spaces.upper()
 
-    def decode_with_base32(self, upper_case_secret):
+    def decode_with_base32(self, upper_case_secret: str):
         """Returns a value whihc decoded by Base32.
         Args:
           upper_case_secret (str):
@@ -80,9 +80,10 @@ class Authenticator(object):
     def current_timestamp(self):
         """Returns the current UNIX time.
         """
+
         return time.time()
 
-    def create_hmac(self, secret, input):
+    def create_hmac(self, secret: str, input: float):
         """Returns the hash value which is used in
         creating one time password.
         Args:
@@ -97,7 +98,7 @@ class Authenticator(object):
         input_hash = hashlib.sha1(secret + input_str).hexdigest().encode('ascii')
         return hashlib.sha1(secret + input_hash).hexdigest()
 
-    def one_time_password(self, delay_time=30):
+    def one_time_password(self, delay_time: float = 30.0):
         """Create the one time password using secret
         which must be set in constructor.
         Args:
