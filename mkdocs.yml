@@ -1,0 +1,54 @@
+site_name: authenticatorpy
+site_description: Generate 2FA tokens like Google Authenticator.
+site_url: https://authenticatorpy.abdullahselek.com/
+theme:
+  name: material
+  palette:
+    primary: black
+    accent: amber
+  favicon: images/favicon.png
+  language: en
+repo_name: abdullahselek/authenticatorpy
+repo_url: https://github.com/abdullahselek/authenticatorpy
+edit_uri: ''
+nav:
+- authenticatorpy: index.md
+- installation.md
+- Module Documentation:
+  - module/authenticator.md
+  - module/cli.md
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+      watch:
+        - authenticatorpy
+markdown_extensions:
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- markdown_include.include:
+    base_path: docs
+- admonition
+- codehilite
+- extra
+extra:
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/abdullahselek
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/in/abdullahselek
+  - icon: fontawesome/solid/globe
+    link: https://abdullahselek.com
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
+- js/termynal.js
+- js/custom.js
