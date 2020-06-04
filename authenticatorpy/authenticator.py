@@ -47,7 +47,7 @@ class Authenticator(object):
         if self.__is_alpha(self._secret) == False:
             raise TypeError('All characters in the secret must be alphabetic!')
 
-    def remove_spaces(self, secret: str):
+    def remove_spaces(self, secret: str) -> str:
         """Removes empty spaces from given string.
         Args:
           secret (str):
@@ -61,7 +61,7 @@ class Authenticator(object):
         secret_without_spaces = re.sub(r'\W', '', secret_without_spaces)
         return secret_without_spaces
 
-    def to_upper_case(self, secret_without_spaces: str):
+    def to_upper_case(self, secret_without_spaces: str) -> str:
         """Updates given string to uppercase without changing.
         Args:
           secret_without_spaces (str):
@@ -73,7 +73,7 @@ class Authenticator(object):
 
         return secret_without_spaces.upper()
 
-    def decode_with_base32(self, upper_case_secret: str):
+    def decode_with_base32(self, upper_case_secret: str) -> bytes:
         """Creates a new Base32 decoded value from given string.
         Args:
           upper_case_secret (str):
@@ -85,13 +85,13 @@ class Authenticator(object):
 
         return base64.b32decode(upper_case_secret)
 
-    def current_timestamp(self):
+    def current_timestamp(self) -> time:
         """Returns the current UNIX time.
         """
 
         return time.time()
 
-    def create_hmac(self, secret: str, input: float):
+    def create_hmac(self, secret: str, input: float) -> str:
         """Creates the hash value which is used in creating one time password.
         Args:
           secret (str):
@@ -107,7 +107,7 @@ class Authenticator(object):
         input_hash = hashlib.sha1(secret + input_str).hexdigest().encode('ascii')
         return hashlib.sha1(secret + input_hash).hexdigest()
 
-    def one_time_password(self, delay_time: float = 30.0):
+    def one_time_password(self, delay_time: float = 30.0) -> str:
         """Creates one time password using secret which must be set in constructor.
         Args:
           delay_time (float):
