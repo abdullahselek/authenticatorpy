@@ -7,6 +7,7 @@ import time
 
 from authenticatorpy.authenticator import Authenticator
 
+
 def create_one_time_password(scheduler, authenticator, sleep_time):
     scheduler.enter(sleep_time, 0, create_one_time_password, (scheduler, authenticator, sleep_time))
     print(authenticator.one_time_password(sleep_time))

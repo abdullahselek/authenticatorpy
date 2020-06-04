@@ -7,9 +7,9 @@ import hashlib
 import binascii
 import re
 
+
 class Authenticator(object):
-    """Authenticator class which generates unique one
-    time use password.
+    """Authenticator class which generates unique one time use password.
     """
 
     def __init__(self, secret: str):
@@ -25,11 +25,14 @@ class Authenticator(object):
         self._secret = secret
         self.__check_secret(secret)
 
+
     def __is_ascii(self, secret: str):
         return all(ord(c) < 128 for c in secret)
 
+
     def __is_alpha(self, secret: str):
         return all(c.isalpha() for c in secret)
+
 
     def __check_secret(self, secret: str):
         if isinstance(secret, str) == False:
@@ -47,6 +50,7 @@ class Authenticator(object):
         if self.__is_alpha(self._secret) == False:
             raise TypeError('All characters in the secret must be alphabetic!')
 
+
     def remove_spaces(self, secret: str) -> str:
         """Removes empty spaces from given string.
         Args:
@@ -61,6 +65,7 @@ class Authenticator(object):
         secret_without_spaces = re.sub(r'\W', '', secret_without_spaces)
         return secret_without_spaces
 
+
     def to_upper_case(self, secret_without_spaces: str) -> str:
         """Updates given string to uppercase without changing.
         Args:
@@ -72,6 +77,7 @@ class Authenticator(object):
         """
 
         return secret_without_spaces.upper()
+
 
     def decode_with_base32(self, upper_case_secret: str) -> bytes:
         """Creates a new Base32 decoded value from given string.
@@ -85,11 +91,13 @@ class Authenticator(object):
 
         return base64.b32decode(upper_case_secret)
 
+
     def current_timestamp(self) -> time:
         """Returns the current UNIX time.
         """
 
         return time.time()
+
 
     def create_hmac(self, secret: str, input: float) -> str:
         """Creates the hash value which is used in creating one time password.
@@ -106,6 +114,7 @@ class Authenticator(object):
         input_str = repr(input).encode('ascii')
         input_hash = hashlib.sha1(secret + input_str).hexdigest().encode('ascii')
         return hashlib.sha1(secret + input_hash).hexdigest()
+
 
     def one_time_password(self, delay_time: float = 30.0) -> str:
         """Creates one time password using secret which must be set in constructor.

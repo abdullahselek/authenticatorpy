@@ -13,4 +13,5 @@ __url__          = 'https://github.com/abdullahselek/authenticatorpy'
 __download_url__ = 'https://pypi.org/pypi/authenticatorpy'
 __description__  = 'A Python library that provide unique keys for 2FA with given secret.'
 
+
 from authenticatorpy import authenticator
