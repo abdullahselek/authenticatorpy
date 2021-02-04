@@ -13,6 +13,9 @@ authenticatorpy
 .. image:: https://codecov.io/gh/abdullahselek/authenticatorpy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/authenticatorpy
 
+.. image:: https://pepy.tech/badge/authenticatorpy
+    :target: https://pepy.tech/project/authenticatorpy
+
 +----------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 |                                Linux                                             |                                       Windows                                      |
 +==================================================================================+====================================================================================+
