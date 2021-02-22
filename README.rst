@@ -16,6 +16,15 @@ authenticatorpy
 .. image:: https://pepy.tech/badge/authenticatorpy
     :target: https://pepy.tech/project/authenticatorpy
 
+.. image:: https://img.shields.io/conda/vn/conda-forge/authenticatorpy?logo=conda-forge
+    :target: https://anaconda.org/conda-forge/authenticatorpy
+
+.. image:: https://anaconda.org/conda-forge/authenticatorpy/badges/latest_release_date.svg
+    :target: https://anaconda.org/conda-forge/authenticatorpy
+
+.. image:: https://anaconda.org/conda-forge/authenticatorpy/badges/license.svg
+    :target: https://anaconda.org/conda-forge/authenticatorpy
+
 +----------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 |                                Linux                                             |                                       Windows                                      |
 +==================================================================================+====================================================================================+
@@ -31,9 +40,18 @@ A pure Python library which provides one time password like Google Authenticator
 Installing
 ==========
 
-You can install authenticatorpy using::
+You can install authenticatorpy using Python Package Index::
 
     $ pip install authenticatorpy
+
+Install with conda from the Anaconda conda-forge channel::
+
+    $ conda install -c conda-forge authenticatorpy
+
+Install from its source repository on GitHub::
+
+    $ pip install -e git+https://github.com/abdullahselek/authenticatorpy#egg=authenticatorpy
+
 
 Getting the code
 ================
